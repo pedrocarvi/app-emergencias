@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+body{margin:0;background:#EFEFEC;font-family:"Instrument Sans",system-ui,sans-serif;color:#17181B}
+a{color:#2F4FD8;text-decoration:none}a:hover{color:#1E37A8}
+.dv-turn{padding:44px 48px 36px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 8px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#17181B;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 14px/1.2 "Instrument Sans",system-ui;color:#17181B}
+.dv-lead{margin:0 0 26px;max-width:660px;font:400 14px/1.6 "Instrument Sans",system-ui;color:#6E7076;text-wrap:pretty}
+.dv-opts{display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.07);color:#17181B;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 12px/1.35 "Instrument Sans",system-ui;color:#6E7076;max-width:390px;text-wrap:pretty}
+.dv-opt:target .dv-oid{background:#2F4FD8;color:#fff}
+.dv-screen{width:390px;height:844px;border-radius:34px;overflow:hidden;background:#FBFBFA;box-shadow:0 1px 2px rgba(0,0,0,.10),0 18px 40px -26px rgba(0,0,0,.35)}
+.dv-cap{font:500 12px "Instrument Sans",system-ui;color:#9A9CA1}
+.dv-next{margin:26px 0 0;font:400 12.5px/1.6 "Instrument Sans",system-ui;color:#8A8C90}
+</style></helmet>
+
+<section class="dv-turn" id="t1">
+  <div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">App de emergencias rurales — primer pase completo</span></div>
+  <p class="dv-lead">Gesto de SOS: mantener presionado 3 segundos, sin modal de confirmación. Menos pasos que un tap + diálogo y prácticamente cero falsos positivos en el bolsillo. La barra oscura que avanza dentro del botón es el feedback; si soltás antes, no pasa nada. Mapas con datos reales de OpenStreetMap sobre Roldán y Casilda, Santa Fe (la traza de la ruta es de ejemplo). Tipografía Instrument Sans, base neutra casi sin croma, color reservado para los tres SOS y el verde de estado.</p>
+  <div class="dv-opts">
+    <div class="dv-opt" id="1a">
+      <div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Prototipo navegable. Mantené presionado un SOS 3 s → envío → emergencia activa. Tocá la barra inferior para recorrer el resto.</div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" hint-size="414px,896px">
+        <dc-import name="Pantalla" screen="home" variant="a" live="{{ true }}" offline="{{ sinConexion }}" hold-ms="{{ holdMs }}" hint-size="390px,844px"></dc-import>
+      </x-import>
+      <div class="dv-cap">Interactivo · iPhone</div>
+    </div>
+    <div class="dv-opt" id="1b">
+      <div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Jerarquía desbalanceada: médico domina la pantalla (es el 70% de los casos reales), bomberos y policía quedan como acciones secundarias legibles.</div>
+      <div class="dv-screen"><dc-import name="Pantalla" screen="home" variant="b" live="{{ false }}" hint-size="390px,844px"></dc-import></div>
+    </div>
+    <div class="dv-opt" id="1c">
+      <div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Paleta contenida: tres bloques grafito iguales, el color aparece solo como punto de identidad y como relleno del progreso al presionar.</div>
+      <div class="dv-screen"><dc-import name="Pantalla" screen="home" variant="c" live="{{ false }}" hint-size="390px,844px"></dc-import></div>
+    </div>
+  </div>
+  <p class="dv-next">Probá pedir: “quedémonos con <a class="dv-oid" href="#1b">1b</a> pero con el color de <a class="dv-oid" href="#1c">1c</a>” · “el SOS con doble tap en vez de mantener” · “agregá el panel que ve el operador de la central”.</p>
+</section>
+
+<section class="dv-turn" id="t1g">
+  <div class="dv-thd"><a class="dv-tid" href="#t1g">1</a><span class="dv-tname">Galería · las 16 pantallas</span></div>
+  <p class="dv-lead">Mismo sistema, sin marco de dispositivo. Botón principal negro 56-58 px, secundario blanco con borde, terceario texto gris; cards de 18-22 px de radio y un solo hairline; chips de estado en gris salvo cuando comunican algo (verde = listo, ámbar = atención). El SOS enviado nunca se afirma hasta que el servidor confirma: comparar “Enviando” con “Emergencia activa” y con “Sin conexión”.</p>
+  <div class="dv-opts">
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">01 · Onboarding</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="onb" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">02 · Configuración inicial</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="setup" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">03 · SOS enviándose</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="sending" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">04 · Emergencia activa</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="active" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">05 · Sin conexión</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="offline" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">06 · Perfil médico</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="medical" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">07 · Contactos</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="contacts" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">08 · Mis campos</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="fields" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">09 · Detalle del establecimiento</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="field" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">10 · Crear ruta</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="routeNew" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">11 · Registrar conduciendo</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="drive" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">12 · Dibujar ruta (tocá el mapa)</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="draw" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">13 · Recorrido reciente</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="trail" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+    <div class="dv-opt"><div class="dv-olabel"><span class="dv-cap">14 · Perfil y configuración</span></div><div class="dv-screen"><dc-import name="Pantalla" screen="profile" live="{{ false }}" hint-size="390px,844px"></dc-import></div></div>
+  </div>
+  <p class="dv-next">Siguiente paso natural: estados SOS atendido / resuelto / cancelado, y la hoja de datos médicos tal como la ve el rescatista.</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;simularSinConexion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Prototipo&quot;},&quot;holdMs&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:1000,&quot;max&quot;:5000,&quot;step&quot;:250,&quot;default&quot;:3000,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Prototipo&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      sinConexion: this.props.simularSinConexion ?? false,
+      holdMs: this.props.holdMs ?? 3000,
+    };
+  }
+}
+</script>
+</body>
+</html>

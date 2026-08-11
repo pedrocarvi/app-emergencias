@@ -1,0 +1,13 @@
+.DS_Store
+.env
+node_modules/
+backend/coverage/
+mobile/.dart_tool/
+mobile/.fvm/flutter_sdk
+mobile/.flutter-plugins*
+mobile/build/
+mobile/.packages
+mobile/ios/Pods/
+mobile/ios/.symlinks/
+mobile/ios/Flutter/ephemeral/
+mobile/android/.gradle/

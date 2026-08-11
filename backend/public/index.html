@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SOS Rural · Emergencias</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <section id="login" class="login-shell">
+    <form id="login-form" class="login-card">
+      <div class="brand-mark">+</div><p class="eyebrow">CENTRO DE OPERACIONES</p><h1>SOS Rural</h1>
+      <p class="muted">Ingresá para gestionar las emergencias de tu región.</p>
+      <label>Email<input id="email" type="email" value="operador@sosrural.ar" required></label>
+      <label>Contraseña<input id="password" type="password" value="operador123" required></label>
+      <p id="login-error" class="error"></p><button type="submit">Ingresar</button>
+    </form>
+  </section>
+  <main id="app" class="app hidden">
+    <aside><div class="logo"><span>+</span><b>SOS Rural</b></div><nav><button class="selected">Emergencias</button><button id="history-filter">Historial</button></nav><div class="operator"><small>OPERADOR</small><strong id="operator-name">Operador</strong><button id="logout">Cerrar sesión</button></div></aside>
+    <section class="workspace">
+      <header><div><p class="eyebrow">CENTRO DE OPERACIONES</p><h1>Emergencias</h1></div><div class="live"><i></i> Actualización automática</div></header>
+      <div class="content-grid">
+        <div class="incident-column"><div class="filters"><button data-status="" class="active">Todas</button><button data-status="PENDING_ATTENTION">Para atender</button><button data-status="ATTENDED">Atendidas</button></div><div id="incidents" class="incidents"></div></div>
+        <article id="detail" class="detail"><div class="empty"><span>+</span><h2>Seleccioná una emergencia</h2><p>Vas a ver ubicación, datos médicos y la mejor ruta de acceso.</p></div></article>
+      </div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="./app.js"></script>
+</body></html>
+
